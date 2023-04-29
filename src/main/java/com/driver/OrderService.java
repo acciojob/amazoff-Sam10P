@@ -1,5 +1,6 @@
 package com.driver;
 
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,10 +58,14 @@ public class OrderService {
     }
 
     public int getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId){
-        String s1 = String.valueOf(time.charAt(0) + time.charAt(1));
-        String s2 = String.valueOf(time.charAt(3) + time.charAt(4));
-        int hh = Integer.valueOf(s1);
-        int mm = Integer.valueOf(s2);
+//        String s1 = String.valueOf(time.charAt(0) + time.charAt(1));
+//        String s2 = String.valueOf(time.charAt(3) + time.charAt(4));
+//        int hh = Integer.valueOf(s1);
+//        int mm = Integer.valueOf(s2);
+
+        String arr[] = time.split(":");
+        int hh = Integer.parseInt(arr[0]);
+        int mm = Integer.parseInt(arr[1]);
 
         int timeInt = (hh*60)+mm;
 
