@@ -75,7 +75,19 @@ public class OrderService {
 
     public String getLastDeliveryTimeByPartnerId(String partnerId){
 
-        String time = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+        int timeInt = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+        int hh = timeInt/60;
+        int mm = timeInt%60;
+        String HH = String.valueOf(hh);
+        if(HH.length()==1){
+            HH = '0' + HH;
+        }
+        String MM = String.valueOf(mm);
+        if(MM.length()==1){
+            MM = '0'+MM;
+        }
+
+        String time = HH + ":" + MM;
         return time;
     }
 

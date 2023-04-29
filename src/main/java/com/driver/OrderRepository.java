@@ -104,7 +104,7 @@ public class OrderRepository {
     }
 
 
-    public String getLastDeliveryTimeByPartnerId(String partnerId){
+    public int getLastDeliveryTimeByPartnerId(String partnerId){
         List<String> list = orderPartnerPair.get(partnerId);
 
         int timeInt = 0;
@@ -113,10 +113,9 @@ public class OrderRepository {
             Order order = orderDb.get(orderId);
             if(order.getDeliveryTime() > timeInt){
                 timeInt = order.getDeliveryTime();
-                time = order.getTime();
             }
         }
-        return time;
+        return timeInt;
     }
 
 
