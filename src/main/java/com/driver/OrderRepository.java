@@ -33,7 +33,7 @@ public class OrderRepository {
     }
 
     public void addOrderPartnerPair(String orderId, String partnerId){
-        List<String> list = orderPartnerPair.get(partnerId);
+        List<String> list = orderPartnerPair.getOrDefault(partnerId, new ArrayList<>());
         list.add(orderId);
 
         DeliveryPartner partner = partnerDb.get(partnerId);
@@ -41,6 +41,7 @@ public class OrderRepository {
         partner.setNumberOfOrders(noOfOrders+1);
 
         orderPartnerPair.put(partnerId, list);
+        isOrderAssigned.remove(orderId);
     }
 
     public Order getOrderById(String orderId){
